@@ -44,6 +44,7 @@ class GraduationService
   # @param [Etd] work
   # @return [Date] the date the degree was awarded, otherwise false
   def self.check_degree_status(work)
+    return Time.zone.today.strftime('%Y-%m-%d') if Rails.env.development? || ENV['FAKE_DATA'] # Otherwise it will never find registrar data for our fake users
     # Find all records by this PPID
     records = @registrar_data.select { |_k, v| v['public person id'] == work.depositor }
     if records.count == 1
