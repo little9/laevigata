@@ -1,0 +1,55 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // mount the root Vue instance
+    new Vue({
+        el: '#app',
+        created: function() {
+            this.fetchData();
+        },
+        data: {
+            schools: {
+                'candler': 'http://localhost:8000/candler_programs.json',
+                'emory': 'http://localhost:8000/emory_programs.json',
+                'laney': 'http://localhost:8000/laney_programs.json',
+                'rollins': 'http://localhost:8000/rollins_programs.json'
+            },
+            departments: [],
+            selected_department: [],
+            selected: 'candler',
+            options: [
+                { text: 'Candler School of Theology', value: 'candler' },
+                { text: 'Emory College', value: 'emory' },
+                { text: 'Laney Graduate School', value: 'laney' },
+                { text: 'Rollins School of Public Health', value: 'rollins' }
+            ]
+        },
+        methods: {
+            fetchData: function()  {
+                $.get(this.schools[this.selected], function(data) {
+                    this.departments = data
+                }.bind(this))
+            }
+        },
+        watch: {
+            selected: function() {
+                this.fetchData()
+            }
+        }
+    })
+})
+</script>
+<div id="app">
+    <label>School</label>
+    <select v-model="selected">
+        <option v-for="option in options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <label>Department</label>
+    <select>
+        <option v-for="department in departments" v.bind:value="department.label">
+            {{ department.label }}
+        </option>
+    </select>
+</div>

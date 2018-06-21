@@ -11,8 +11,9 @@
  * It is generally better to create a new file per style scope.
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require hyrax
- *= require openseadragon 
+ *= require openseadragon
  *= require etd
- *= require_tree ./emory/ 
+ *= require in_progress_etd
+ *= require_tree ./emory/
  *= require_self
  */
