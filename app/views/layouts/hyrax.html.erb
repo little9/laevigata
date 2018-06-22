@@ -3,7 +3,6 @@
   <head>
     <%= render partial: 'layouts/head_tag_content' %>
     <% if Rails.application.config_for('new_ui').fetch('enabled', false) %>
-      <%= javascript_pack_tag 'application' %>
       <%= javascript_pack_tag 'schools' %>
     <% end %>
 
