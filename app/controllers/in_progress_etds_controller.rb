@@ -1,7 +1,6 @@
 class InProgressEtdsController < ApplicationController
   def new
     @in_progress_etd = InProgressEtd.find_or_create_by(user_ppid: current_user.id)
-    # Showing the form that we get from Hyrax::EtdForm
   end
 
   def create

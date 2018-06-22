@@ -50,6 +50,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'vue-rails-form-builder'
+gem 'webpacker', '~> 3.5'
 gem 'whenever', require: false
 gem 'xray-rails'
 gem 'yard'
@@ -92,6 +93,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-sidekiq', '~> 0.20.0'
   gem 'listen', '~> 3.0.5'
+  gem 'puma'
   # Spring speeds up development by keeping your application running in the
   # background. Read more: https://github.com/rails/spring
   gem 'spring'
