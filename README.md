@@ -91,8 +91,8 @@ add the email address to the list in `config/emory/do_not_send.yml`
 1. Start redis
     `redis-server &`
     *note:* use ` &` to start in the background, or run redis in a new terminal session
-1. Setup environment variables for your development environment: 
-    `cp dotenv.sample .env.development`, 
+1. Setup environment variables for your development environment:
+    `cp dotenv.sample .env.development`,
     see the [Environment variables in development](#environment-variables-in-development) section for more details
 1. Read the section on 'Database Authentication' below and decide if you want to set up your environment for database authentication.
 1. Start the demo server in its own terminal session
@@ -103,6 +103,20 @@ add the email address to the list in `config/emory/do_not_send.yml`
     `bin/setup`
 1. Run the test suite
     `bin/rails ci`
+
+## Rails 5.1 Upgrade Migration Modifications
+
+In Rails 5.1, a change to migrations was introduced in which the [Rails version is required](http://guides.rubyonrails.org/5_1_release_notes.html) in the class declarations. Accordingly, we've updated many of the migrations and this requires a few steps. In development, with an existing database, the best thing to do is drop and recreate it. Those steps are:
+
+1. `bin/rails db:drop`
+1. In the Rails console, employ ActiveFedora::Cleaner to wipe out your Fedora and Solr instances.
+  `bin/rails c`
+  `require active_fedora/cleaner`
+  `ActiveFedora::Cleaner.clean!`
+1. `bin/rails db:create`
+1. `bin/rails db:setup`
+
+In production, different steps will be required to preserve data.
 
 ## Database Authentication
 

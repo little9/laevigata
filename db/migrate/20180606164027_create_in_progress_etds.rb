@@ -1,4 +1,4 @@
-class CreateInProgressEtds < ActiveRecord::Migration[5.0]
+class CreateInProgressEtds < ActiveRecord::Migration[5.1][5.0]
   def change
     create_table :in_progress_etds do |t|
       t.string :name

@@ -1,4 +1,4 @@
-class RemoveEmailIndexFromUsers < ActiveRecord::Migration[5.0]
+class RemoveEmailIndexFromUsers < ActiveRecord::Migration[5.1][5.0]
   def change
     remove_index :users, :email
   end
