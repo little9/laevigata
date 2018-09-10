@@ -9,7 +9,7 @@ pool:
 steps:
 - task: UseRubyVersion@0
   inputs:
-    versionSpec: '>= 2.5'
+    versionSpec: '2.4.2'
 
 - script: sudo apt-get install -y qt5-default
 - script: sudo apt-get install -y libqt5webkit5-dev
