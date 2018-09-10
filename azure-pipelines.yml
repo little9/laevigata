@@ -11,10 +11,10 @@ steps:
   inputs:
     versionSpec: '>= 2.5'
 
-- script: apt-get install qt5-default
-- script: apt-get install libqt5webkit5-dev
-- script: apt-get install gstreamer1.0-plugins-base
-- script: apt-get install gstreamer1.0-tools gstreamer1.0-x
+- script: sudo apt-get install qt5-default
+- script: sudo apt-get install libqt5webkit5-dev
+- script: sudo apt-get install gstreamer1.0-plugins-base
+- script: sudo apt-get install gstreamer1.0-tools gstreamer1.0-x
 
 - script: |
     gem install bundler
