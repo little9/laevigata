@@ -1,30 +1,47 @@
 # Copy this file to .env.development or .env.production and populate with appropriate values
+DATABASE_HOST=db
+DATABASE_USERNAME=laevigata  
+DATABASE_HOST=db
+FEDORA_HOST=http://fedora
+FEDORA_PORT=8080
+FEDORA_URL=http://fedora:8080/rest
+FEDORA_BASE_PATH=/dev
+FEDORA_TEST_URL=http://fedora_test:8080/rest
+FEDORA_TEST_BASE_PATH=/test
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_URL=redis://redis:6379/0
+SOLR_URL=http://solr:8983/solr/laevigata
+SOLR_TEST_URL=http://solr_test:8983/solr/laevigata
+LAEVIGATA_DATABASE_AUTH='true'
 
-export RAILS_HOST=localhost:3000
+NEW_UI_ENABLED=true
 
-export ACTION_MAILER_HOST=localhost
-export ACTION_MAILER_SMTP_ADDRESS=##YOUR DATA HERE##
-export ACTION_MAILER_PORT=##YOUR DATA HERE##
-export ACTION_MAILER_USER_NAME=##YOUR DATA HERE##
-export ACTION_MAILER_PASSWORD=##YOUR DATA HERE##
+RAILS_HOST=localhost:3000
 
-export BOX_OAUTH_CLIENT_ID=##YOUR DATA HERE##
-export BOX_OAUTH_CLIENT_SECRET=##YOUR DATA HERE##
+ACTION_MAILER_HOST=localhost
+ACTION_MAILER_SMTP_ADDRESS=##YOUR DATA HERE##
+ACTION_MAILER_PORT=##YOUR DATA HERE##
+ACTION_MAILER_USER_NAME=##YOUR DATA HERE##
+ACTION_MAILER_PASSWORD=##YOUR DATA HERE##
 
-export PROQUEST_NOTIFICATION_EMAIL=PQ-DissertationETD@proquest.com
-export REGISTRAR_DATA_PATH=/usr/local/projects/hyrax/laevigata/spec/fixtures/registrar_sample.json
-export FAKE_DATA=true
+BOX_OAUTH_CLIENT_ID=##YOUR DATA HERE##
+BOX_OAUTH_CLIENT_SECRET=##YOUR DATA HERE##
+
+PROQUEST_NOTIFICATION_EMAIL=PQ-DissertationETD@proquest.com
+REGISTRAR_DATA_PATH=/usr/local/projects/hyrax/laevigata/spec/fixtures/registrar_sample.json
+FAKE_DATA=true
 
 # Use local database auth instead of Shibboleth
-export LAEVIGATA_DATABASE_AUTH=true
+LAEVIGATA_DATABASE_AUTH=true
 
 # Turn off coveralls during specs
-export NO_COVERAGE=true
+NO_COVERAGE=true
 
 # Dial back fedora & solr
-export _JAVA_OPTIONS="-Xmx600m"
+_JAVA_OPTIONS="-Xmx600m"
 
 # For hyrax config
-export UPLOAD_PATH=tmp/uploads
-export CACHE_PATH=tmp/uploads/cache
-export WORKING_PATH=tmp/uploads
+UPLOAD_PATH=tmp/uploads
+CACHE_PATH=tmp/uploads/cache
+WORKING_PATH=tmp/uploads

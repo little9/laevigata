@@ -1,0 +1,99 @@
+version: "3.6"
+
+services:
+  web:
+    image: little9/laevigata:latest
+    depends_on:
+      - db
+      - fedora
+      - redis
+      - solr
+      - fedora_test
+      - solr_test
+    env_file:
+      - ./dotenv.sample
+    environment:
+      DATABASE_HOST: db
+      FEDORA_HOST: http://fedora
+      FEDORA_PORT: 8080
+      FEDORA_URL: http://fedora:8080/rest
+      FEDORA_BASE_PATH: /dev
+      FEDORA_TEST_URL: http://fedora_test:8080/rest
+      FEDORA_TEST_BASE_PATH: /test
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379/0
+      SOLR_URL: http://solr:8983/solr/laevigata
+      SOLR_TEST_URL: http://solr_test:8983/solr/laevigata
+      LAEVIGATA_DATABASE_AUTH: 'true'
+      NEW_UI_ENABLED: 'true'
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/laevigata
+      - data:/opt/data
+      - derivatives:/opt/derivatives
+      - uploads:/opt/uploads
+      - bundle_dir:/usr/local/bundle
+      - log:/laevigata/log
+      - laevigata_tmp:/laevigata/tmp
+      - tmp:/tmp
+    working_dir: /laevigata
+    stdin_open: true
+    tty: true
+  fedora:
+    image: nulib/fcrepo4:4.7.5
+    ports:
+      - "8984:8080"
+    volumes:
+      - fcrepo_data:/data
+  fedora_test:
+    image: nulib/fcrepo4:4.7.5
+    ports:
+      - "8986:8080"
+  db:
+    image: postgres:9
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: laevigata
+  redis:
+    image: redis:4
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+  solr:
+    image: solr:6.5
+    volumes:
+      - ./solr/config:/opt/solr/server/solr/configsets/laevigata
+    ports:
+      - "8983:8983"
+    entrypoint:
+      - solr-precreate
+      - laevigata
+      - /opt/solr/server/solr/configsets/laevigata
+  solr_test:
+    image: solr:6.5
+    volumes:
+      - ./solr/config:/opt/solr/server/solr/configsets/laevigata
+    ports:
+      - "8985:8983"
+    entrypoint:
+      - solr-precreate
+      - laevigata
+      - /opt/solr/server/solr/configsets/laevigata
+volumes:
+  data:
+  bundle_dir:
+  derivatives:
+  fcrepo_data:
+  log:
+  pg_data:
+  redis_data:
+  solr_data:
+  tmp:
+  laevigata_tmp:
+  uploads:
